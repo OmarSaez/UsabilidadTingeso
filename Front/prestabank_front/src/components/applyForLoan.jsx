@@ -252,7 +252,7 @@ const ApplyForLoan = () => {
                         </FormControl>
 
                         <Button variant="outlined" component="label" sx={{ mt: 2 }}>
-                            Cargar comprobante de documentación
+                        Haz click para subir comprobantes en formato PDF
                             <input type="file" hidden accept="application/pdf" onChange={handleFileChange} />
                         </Button>
 

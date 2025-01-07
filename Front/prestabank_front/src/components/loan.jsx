@@ -265,66 +265,69 @@ const Loan = () => {
                 <Typography variant="h6">Detalles del crédito</Typography>
             </Box>
       
-          <Grid container spacing={3}>
-            {/* Información del préstamo */}
-            <Grid item xs={12} sm={6}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h6">Datos del Préstamo</Typography>
-                  <Typography>ID Préstamo: {idLoan}</Typography>
-                  <Typography>ID Usuario: {id}</Typography>
-                  <Typography>
-                    Estado: <span style={{ color: getColor(loanData.status) }}>{getStatusText(loanData.status)}</span>
-                  </Typography>
-                  <Typography>Tipo de Crédito: {getTypeText(loanData.type)}</Typography>
-                  <Typography>
-                    Valor del Préstamo:{" "}
-                    {new Intl.NumberFormat("es-CL", {
-                      style: "decimal",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 2,
-                    }).format(loanData.loanAmount)}
-                  </Typography>
-                  <Typography>Interés Anual: {loanData.yearInterest}</Typography>
-                  <Typography>
-                    Cuota Mensual:{" "}
-                    {new Intl.NumberFormat("es-CL", {
-                      style: "decimal",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 2,
-                    }).format(loanData.monthlyPayment)}
-                  </Typography>
-                  <Typography>Total de Meses: {loanData.totalPayments}</Typography>
-                </CardContent>
-              </Card>
+            <Grid container spacing={3}>
+              {/* Información del préstamo */}
+              <Grid item xs={12} sm={6}>
+                <Card style={{ height: '100%' }}>
+                  <CardContent style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                    <Typography variant="h6">Datos del Préstamo</Typography>
+                    <Typography>ID Préstamo: {idLoan}</Typography>
+                    <Typography>ID Usuario: {id}</Typography>
+                    <Typography>
+                      Estado: <span style={{ color: getColor(loanData.status) }}>{getStatusText(loanData.status)}</span>
+                    </Typography>
+                    <Typography>Tipo de Crédito: {getTypeText(loanData.type)}</Typography>
+                    <Typography>
+                      Valor del Préstamo:{" "}
+                      {new Intl.NumberFormat("es-CL", {
+                        style: "decimal",
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2,
+                      }).format(loanData.loanAmount)}
+                    </Typography>
+                    <Typography>Interés Anual: {loanData.yearInterest}</Typography>
+                    <Typography>
+                      Cuota Mensual:{" "}
+                      {new Intl.NumberFormat("es-CL", {
+                        style: "decimal",
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2,
+                      }).format(loanData.monthlyPayment)}
+                    </Typography>
+                    <Typography>Total de Meses: {loanData.totalPayments}</Typography>
+                    <div style={{ flexGrow: 1 }}></div> {/* Espacio adicional */}
+                  </CardContent>
+                </Card>
+              </Grid>
+
+              {/* Datos del cliente */}
+              <Grid item xs={12} sm={6}>
+                <Card style={{ height: '100%' }}>
+                  <CardContent style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                    <Typography variant="h6">Datos del Cliente</Typography>
+                    <Typography>RUT: {userData.rut}</Typography>
+                    <Typography>
+                      Nombre y Apellido: {userData.name} {userData.lastName}
+                    </Typography>
+                    <Typography>
+                      Ingreso:{" "}
+                      {new Intl.NumberFormat("es-CL", { style: "decimal", minimumFractionDigits: 0 }).format(loanData.income)}
+                    </Typography>
+                    <Typography>Antigüedad en Trabajo: {loanData.veteran}</Typography>
+                    <Typography>
+                      Deudas:{" "}
+                      {new Intl.NumberFormat("es-CL", { style: "decimal", minimumFractionDigits: 0 }).format(loanData.totaldebt)}
+                    </Typography>
+                    <Typography>
+                      Fecha de Nacimiento: {userData.birthDay}/{userData.birthMonth}/{userData.birthYear}
+                    </Typography>
+                    <div style={{ flexGrow: 1 }}></div> {/* Espacio adicional */}
+                  </CardContent>
+                </Card>
+              </Grid>
             </Grid>
-      
-            {/* Datos del cliente */}
-            <Grid item xs={12} sm={6}>
-              <Card>
-                <CardContent>
-                    
-                <Typography variant="h6">Datos del Cliente</Typography>
-                  <Typography>RUT: {userData.rut}</Typography>
-                  <Typography>
-                    Nombre y Apellido: {userData.name} {userData.lastName}
-                  </Typography>
-                  <Typography>
-                    Ingreso:{" "}
-                    {new Intl.NumberFormat("es-CL", { style: "decimal", minimumFractionDigits: 0 }).format(loanData.income)}
-                  </Typography>
-                  <Typography>Antigüedad en Trabajo: {loanData.veteran}</Typography>
-                  <Typography>
-                    Deudas:{" "}
-                    {new Intl.NumberFormat("es-CL", { style: "decimal", minimumFractionDigits: 0 }).format(loanData.totaldebt)}
-                  </Typography>
-                  <Typography>
-                    Fecha de Nacimiento: {userData.birthDay}/{userData.birthMonth}/{userData.birthYear}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
+
+          <br />
       
           {/* Requisitos */}
           <Box 
@@ -344,8 +347,8 @@ const Loan = () => {
             <Grid container spacing={3}>
             {loanData.evalue.map((status, index) => (
                 <Grid item xs={12} sm={6} key={index}>
-                <Card>
-                    <CardContent>
+                <Card style={{ height: '100%' }}>
+                  <CardContent style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                     <Typography variant="h6">Requisito {index + 1}</Typography>
                     <br/>
                     <Typography><b>Estado del requisito</b>: {getRequirementStatus(status)}</Typography>
@@ -363,7 +366,7 @@ const Loan = () => {
                         <Typography variant="body1">
                             Se debe revisar el historial crediticio del cliente en DICOM, esta es una revisión manual que debe hacer un ejecutivo.
                         </Typography>
-                        <Button variant="contained" onClick={handleOpenRequestR2} sx={{ mt: 2 }}>Cambiar estado</Button>
+                        <Button variant="contained" onClick={handleOpenRequestR2} sx={{ mt: 2 }}>CAMBIAR ESTADO DEL REQUISITO 2</Button>
                         <Dialog open={openRequestR2} onClose={handleCloseRequestR2}>
                             <DialogTitle>Cambiar estado de la solicitud</DialogTitle>
                             <DialogContent>
@@ -432,37 +435,35 @@ const Loan = () => {
                         <br/>
                         
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <label>
-                                  Ingrese la antigüedad de la cuenta de ahorros:
-                          </label>
-                          <input 
-                              type="number" 
-                              value={accountYears} 
-                              onChange={handleAccountYearsChange} 
-                              min="0" 
-                              style={{ width: '30px', textAlign: 'right' }} 
-                          />
-                          <span>años</span>
-                      </div>
+                            <label>
+                                Ingrese la antigüedad de la cuenta de ahorros:
+                            </label>
+                            <input 
+                                type="number" 
+                                value={accountYears} 
+                                onChange={handleAccountYearsChange} 
+                                min="0" 
+                                style={{ width: '30px', textAlign: 'right' }} 
+                            />
+                            <span>años</span>
+                        </div>
 
-
-                        
                         <br />
                         
                         <label>Balance de los últimos 12 meses:</label>
                         <div>
                         {balanceLast12.map((balance, idx) => (
-                          <div key={idx} style={{  gap: '8px', marginBottom: '8px' }}>
-                              <label style={{ minWidth: '70px' }}>Mes {idx + 1}: </label>
-                              <input
-                                  type="text" // Cambiado a 'text' para permitir formato
-                                  value={formatNumber(balance)}
-                                  onChange={(e) => handleBalanceChangeFormatted(idx, e.target.value)}
-                                  style={{ width: '100px', textAlign: 'right' }}
-                              />
-                              <span> pesos chilenos</span>
-                          </div>
-                      ))}
+                            <div key={idx} style={{  gap: '8px', marginBottom: '8px' }}>
+                                <label style={{ minWidth: '70px' }}>Mes {idx + 1}: </label>
+                                <input
+                                    type="text" // Cambiado a 'text' para permitir formato
+                                    value={formatNumber(balance)}
+                                    onChange={(e) => handleBalanceChangeFormatted(idx, e.target.value)}
+                                    style={{ width: '100px', textAlign: 'right' }}
+                                />
+                                <span> pesos chilenos</span>
+                            </div>
+                        ))}
 
                         </div>
                         
@@ -477,30 +478,27 @@ const Loan = () => {
                                 }
                             }}
                         >
-                            Evaluar Requisito 7 Ahorro
+                            Evaluar Requisito 7
                         </Button>
-
                         
                         <br /><br />
                     </>
                     )}
-
-                    </CardContent>
+                    <div style={{ flexGrow: 1 }}></div> {/* Espacio adicional */}
+                  </CardContent>
                 </Card>
+
                 </Grid>
             ))}
             </Grid>
 
             <div>
               {/* Descargar PDF*/}
-              
-              <Card>
-                <CardContent>
+              <br /><br />
                   <Typography variant="h6">Documento Adjunto</Typography>
                   {/* Botón para descargar el PDF */}
                     <Button variant="contained" onClick={handleDownloadPDF}>Descargar PDF</Button>
-                </CardContent>
-              </Card>
+              <br /><br />
             </div>
 
       
